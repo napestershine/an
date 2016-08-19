@@ -13,9 +13,15 @@ class GenusController extends Controller
      */
     public function showAction($genusName)
     {
+        $notes = [
+            'one',
+            'two',
+            'three'
+        ];
 
         return $this->render('genus/show.html.twig', [
-            'name' => $genusName
+            'name' => $genusName,
+            'notes' => $notes
         ]);
 
     }
