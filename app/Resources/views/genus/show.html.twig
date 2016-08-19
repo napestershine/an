@@ -18,19 +18,23 @@
             </dl>
         </div>
     </div>
-    <div class="notes-container">
-        <h2 class="notes-header">Notes</h2>
-        <div><i class="fa fa-plus plus-btn"></i></div>
-    </div>
-    <section id="cd-timeline"></section>
+
+    <div id="js-notes-wrapper"></div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script>
 
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
+
+    <script type="text/babel">
+        ReactDOM.render(
+                <NoteSection />,
+                document.getElementById('js-notes-wrapper')
+        );
+    </script>
 
 {% endblock %}
