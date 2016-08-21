@@ -120,4 +120,16 @@ class GenusNote
     {
         $this->createdAt = $createdAt;
     }
+
+    public function getGenus()
+    {
+        return $this->genus;
+    }
+
+
+    public function setGenus(Genus $genus)
+    {
+        $this->genus = $genus;
+    }
+
 }
