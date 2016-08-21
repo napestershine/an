@@ -30,6 +30,21 @@ class Genus
     private $name;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $subFamily;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $speciesCount;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $funFact;
+
+    /**
      * @return mixed
      */
     public function getName()

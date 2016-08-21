@@ -17,6 +17,16 @@ class GenusController extends Controller
     public function newAction()
     {
         $genus = new Genus();
+
+        $genus->setName('Octopus' . rand(1, 100));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($genus);
+
+        $em->flush();
+
+        return new Response("<html><body>Genus Created!</body></html>");
     }
 
     /**
