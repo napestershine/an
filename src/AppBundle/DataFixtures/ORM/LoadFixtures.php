@@ -11,22 +11,43 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Genus;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Nelmio\Alice\Fixtures;
 
 class LoadFixtures implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
 
-        $genus = new Genus();
+        Fixtures::load(
+            __DIR__ . '/fixtures.yml',
+            $manager,
+            [
+                'providers' => [$this]
+            ]
+        );
+    }
 
-        $genus->setName('Octopus' . rand(1, 100));
+    public function genus()
+    {
+        $genera = [
+            'Octopus',
+            'Balaena',
+            'Orcinus',
+            'Hippocampus',
+            'Shine',
+            'Lipsum',
+            'Lorem',
+            'Domet',
+            'Ipsum',
+            'Tripod',
+            'Kurkure',
+            'Lays',
+            'Punch',
+            'Testpox'
+        ];
 
-        $genus->setSubFamily('Octopodinae');
+        $key = array_rand($genera);
 
-        $genus->setSpeciesCount(rand(100, 9999));
-
-
-        $manager->persist($genus);
-        $manager->flush();
+        return $genera[$key];
     }
 }

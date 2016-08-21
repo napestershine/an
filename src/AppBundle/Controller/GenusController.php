@@ -40,7 +40,8 @@ class GenusController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $genuses = $em->getRepository('AppBundle:Genus')->findAll();
+
+        $genuses = $em->getRepository('AppBundle:Genus')->findAllPublishedOrderBySize();
 
         return $this->render("genus/list.html.twig", [
             'genuses' => $genuses
