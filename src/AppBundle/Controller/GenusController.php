@@ -30,9 +30,6 @@ class GenusController extends Controller
             $cache->save($key, $funFact);
         }
 
-
-
-
         return $this->render('genus/show.html.twig', [
             'name' => $genusName,
             'funFact' => $funFact
