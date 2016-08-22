@@ -107,7 +107,10 @@ class GenusController extends Controller
      */
     public function getNotesAction(Genus $genus)
     {
-        dump($genus);
+        foreach ($genus->getNotes() as $note) {
+            dump($note);
+        }
+
         $notes = [
             [
                 'id' => 1,
