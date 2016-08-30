@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Genus;
 use AppBundle\Entity\GenusNote;
+use AppBundle\Service\MarkdownTransformer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -80,6 +81,11 @@ class GenusController extends Controller
         }
 
 
+        $transformer = new MarkdownTransformer();
+
+        $funFact = $transformer->parse($genus->getFunFact());
+
+
         /* $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
 
          $key = md5($funFact);
@@ -94,14 +100,15 @@ class GenusController extends Controller
 
         $this->get('logger')->info('Showing genus: ' . $genusName);
 
-      /*  $recentNotes = $genus->getNotes()->filter(function (GenusNote $note) {
-            return $note->getCreatedAt() > new \DateTime('-3 months');
-        });*/
+        /*  $recentNotes = $genus->getNotes()->filter(function (GenusNote $note) {
+              return $note->getCreatedAt() > new \DateTime('-3 months');
+          });*/
 
-      $recentNotes = $em->getRepository('AppBundle:GenusNote')->findAllRecentNotesForGenus($genus);
+        $recentNotes = $em->getRepository('AppBundle:GenusNote')->findAllRecentNotesForGenus($genus);
 
         return $this->render('genus/show.html.twig', [
             'genus' => $genus,
+            'funFact' => $funFact,
             'recentNoteCount' => count($recentNotes)
         ]);
 
